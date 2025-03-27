@@ -1,98 +1,60 @@
-# Verilog-Code-for-Swapping-Three-Numbers
-Aim
-To design and simulate a Verilog HDL code for swapping the values of three numbers without using any temporary variables, and verify the correctness of the swapping operation through a testbench using the Vivado 2023.1 simulation environment.
+# Ex No: 01 - Design & Implementation of CMOS Inverter Design Using Cadence EDA Tools
 
-Apparatus Required
-Vivado 2023.1 or equivalent Verilog simulation tool.
+## Aim
+The aim is to create and simulate a CMOS inverter circuit with Cadence EDA tools, assess its key electrical properties, and explore foundational CMOS principles, including the design workflow and simulation approaches.
 
-Procedure
-Launch Vivado 2023.1:
+## Tools Required
 
-Open Vivado and create a new project.
-Write the Verilog Code for Swapping:
+### Cadence EDA Suite
+- **Virtuoso Schematic Editor** (for circuit design)  
+- **Spectre Simulator** (for circuit simulation)  
 
-Write the Verilog code that swaps the values of three numbers (a, b, and c) using basic arithmetic or bitwise operations without using temporary variables.
-Create the Testbench:
+### Process Design Kit (PDK)
+- CMOS technology library (e.g., 180nm, 45nm node)  
 
-Write a testbench to simulate the swapping operation. The testbench should initialize three numbers, trigger the swapping module, and check if the values are swapped correctly.
-Add the Verilog Files:
+### Computer System
+- Minimum **4GB RAM** and a **multi-core processor**
 
-Add the Verilog module and the testbench file to the Vivado project.
-Run Simulation:
+## Procedure:
+### 1. Launch Cadence Virtuoso Environment:
+     Open the Cadence Virtuoso tool and set up the working library.
+     Create a new schematic cell view for the CMOS Inverter design.
+### 2. Schematic Design:
+    Select the NMOS and PMOS transistors from the library.
+    Connect the NMOS transistor with its source terminal to GND and its drain terminal to the output node.
+    Connect the PMOS transistor with its source terminal to VDD and its drain terminal to the same output node as NMOS.
+    Join the gate terminals of both transistors to form the input node.
+    Connect input voltage sources Vdc and Vpulse
+### 3. Simulation:
+    Check the Design for Errors and proceed for Simulation
+    Launch the Analog Design Environment (ADE).
+    Configure transient analysis for time-domain response.
+    Set the simulation parameters such as voltage sweep range and step size.
+    Use Spectre simulator to perform transient and DC analyses.
+### 4. Waveform Analysis:
+    Observe the output voltage waveform concerning the input voltage.
 
-Run the behavioral simulation in Vivado to verify the swapping operation.
-Observe the Waveforms:
+## Circuit Diagram:
+#### 1. Schematic of CMOS Inverter:
 
-Examine the waveform to confirm that the values of the three numbers are swapped as expected.
-Save and Document Results:
+![image](https://github.com/user-attachments/assets/4d006fa3-bf66-4b69-b314-ff0c102d19ce)
 
-Capture the waveform output and include the results in your report for verification.
+#### 2. Transient Response Setup:
 
-Verilog Code:
+![image](https://github.com/user-attachments/assets/07823e7b-b03d-4291-8fdf-73d76481e0fa)
 
-// swap_three_numbers.v
-module swap_three_numbers (
-    input wire [7:0] a_in,
-    input wire [7:0] b_in,
-    input wire [7:0] c_in,
-    output reg [7:0] a_out,
-    output reg [7:0] b_out,
-    output reg [7:0] c_out
-);
-    always @(*) begin
-        a_out = b_in; // Swap: a = b
-        b_out = c_in; // Swap: b = c
-        c_out = a_in; // Swap: c = a
-    end
-endmodule
+#### 3. Voltage Transfer Characteristic (VTC)  Setup:
+
+   ![image](https://github.com/user-attachments/assets/012b773b-37d4-4b93-b5c7-5a163d3e4fdf)
 
 
-Testbench for Swapping Three Numbers:
+## Output
+#### 1.Transient Analysis Output
 
-// swap_three_numbers_tb.v
-`timescale 1ns / 1ps
+![image](https://github.com/user-attachments/assets/b437da5b-7ce8-4bc8-8179-f04855ea10fc)
 
-module swap_three_numbers_tb;
+## Results:
 
-    // Inputs
-    reg [7:0] a;
-    reg [7:0] b;
-    reg [7:0] c;
-
-    // Outputs
-    wire [7:0] a_out;
-    wire [7:0] b_out;
-    wire [7:0] c_out;
-
-    // Instantiate the Unit Under Test (UUT)
-    swap_three_numbers uut (
-        .a_in(a),
-        .b_in(b),
-        .c_in(c),
-        .a_out(a_out),
-        .b_out(b_out),
-        .c_out(c_out)
-    );
-
-    // Test procedure
-    initial begin
-        // Initialize inputs
-        a = 8'd10; // Assign 10 to a
-        b = 8'd20; // Assign 20 to b
-        c = 8'd30; // Assign 30 to c
-
-        // Wait for 10 ns to observe swap
-        #10;
-
-        // Display results
-        $display("Before Swap: a = %d, b = %d, c = %d", a, b, c);
-        #10;
-        $display("After Swap: a = %d, b = %d, c = %d", a_out, b_out, c_out);
-        
-        // Stop the simulation
-        #10 $stop;
-    end
-endmodule
-
-Conclusion
-In this experiment, a Verilog HDL code for swapping three numbers was designed and successfully simulated. The testbench verified the swapping operation, showing that the values of three input numbers (a, b, and c) were swapped correctly without the use of temporary variables. This experiment demonstrated the effectiveness of Verilog in implementing logical operations and control mechanisms such as swapping values. The simulation results confirm the correct functionality of the design.
+1.	Successfully designed the CMOS inverter schematic using Cadence EDA tools.
+2.	The simulation results demonstrated the correct logic operation of the inverter, where the output voltage switches between high (Vdd) and low (0V) levels, corresponding to the input voltage transitions.
+3.	The Voltage Transfer Characteristic (VTC) curve was plotted, showing the relationship between input and output voltages.
